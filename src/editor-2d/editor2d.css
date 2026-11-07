@@ -1,0 +1,239 @@
+.editor2d {
+  --plan-bg: #17201f;
+  --plan-grid: #35413e;
+  --plan-dot: #394641;
+  --plan-stage-edge: #82978d;
+  --plan-text: #a5b8b1;
+  --plan-dimension: #637e72;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  background: var(--plan-bg);
+  color: #d5e1dc;
+  font-family: inherit;
+}
+.editor2d-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  user-select: none;
+  outline: none;
+}
+.editor2d-canvas.tool-pan {
+  cursor: grab;
+}
+.editor2d-canvas.tool-pan.is-dragging {
+  cursor: grabbing;
+}
+.editor2d-canvas.tool-measure {
+  cursor: crosshair;
+}
+.editor2d-object {
+  cursor: move;
+}
+.editor2d-object.is-locked {
+  cursor: pointer;
+}
+.tool-pan .editor2d-object {
+  cursor: grab;
+}
+.tool-measure .editor2d-object {
+  cursor: crosshair;
+}
+.editor2d-rotation-handle {
+  cursor: crosshair;
+}
+.editor2d-magnetic-guide line {
+  stroke: #e8bd76;
+  stroke-width: 1;
+  stroke-dasharray: 6 4;
+  vector-effect: non-scaling-stroke;
+}
+.editor2d-pivot circle {
+  fill: #17201f;
+}
+.editor2d-pivot circle,
+.editor2d-pivot path {
+  stroke: #e8bd76;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.editor2d-view-tag {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  color: #9aafa5;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 1.6px;
+}
+.editor2d-view-tag > span:last-child {
+  font-size: 9px;
+  border: 1px solid #485d51;
+  padding: 2px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.4px;
+}
+.editor2d-live-dot {
+  width: 5px;
+  height: 5px;
+  background: #8fd7b8;
+  border-radius: 50%;
+}
+.editor2d-tools {
+  position: absolute;
+  top: 51px;
+  left: 15px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 5px;
+  border: 1px solid #42514780;
+  border-radius: 9px;
+  background: #1c2823ec;
+  box-shadow: 0 3px 10px #0002;
+}
+.editor2d-tools button,
+.editor2d-zoom button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  min-width: 0;
+  border: 0;
+  border-radius: 5px;
+  padding: 0;
+  color: #97afa1;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+.editor2d-tools button:hover,
+.editor2d-zoom button:hover {
+  background: #31483b;
+  color: #d4f4e2;
+}
+.editor2d-tools button.is-active {
+  background: #314d3e;
+  color: #a5e0bb;
+}
+.editor2d-tools button:focus-visible,
+.editor2d-zoom button:focus-visible {
+  outline: 2px solid #a5e0bb;
+  outline-offset: 2px;
+}
+.editor2d-tool-divider {
+  background: #51655866;
+  display: block;
+  height: 1px;
+  width: 19px;
+  margin: 4px 0;
+}
+.editor2d-bottom {
+  position: absolute;
+  bottom: 14px;
+  left: 18px;
+  right: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+.editor2d-coordinate {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #8fa699;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 5px #111;
+}
+.editor2d-coordinate > span:first-child {
+  color: #bccfc1;
+}
+.editor2d-zoom {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 4px;
+  border: 1px solid #42514780;
+  border-radius: 7px;
+  background: #1c2823ec;
+  pointer-events: auto;
+  box-shadow: 0 3px 10px #0002;
+}
+.editor2d-zoom > span:not(.editor2d-tool-divider) {
+  min-width: 43px;
+  text-align: center;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: #c4d6ca;
+}
+.editor2d-zoom .editor2d-tool-divider {
+  height: 16px;
+  width: 1px;
+  margin: 0 3px;
+}
+.editor2d-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 58px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 90%;
+  white-space: nowrap;
+  background: #21352a;
+  border: 1px solid #4d6b56;
+  color: #d3e3d4;
+  font-size: 11px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  pointer-events: none;
+  box-shadow: 0 4px 16px #0003;
+}
+@media (max-width: 750px) {
+  .editor2d-view-tag {
+    font-size: 9px;
+    top: 12px;
+    left: 12px;
+    letter-spacing: 1px;
+  }
+  .editor2d-tools {
+    left: 10px;
+    top: 40px;
+  }
+  .editor2d-bottom {
+    left: 12px;
+    bottom: 10px;
+    right: 10px;
+  }
+  .editor2d-coordinate {
+    font-size: 9px;
+  }
+  .editor2d-hint {
+    font-size: 10px;
+    white-space: normal;
+    min-width: 180px;
+  }
+  .editor2d-zoom > span:not(.editor2d-tool-divider) {
+    min-width: 34px;
+  }
+}

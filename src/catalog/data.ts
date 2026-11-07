@@ -1,0 +1,48 @@
+import type { Category, EquipmentDefinition, EquipmentKind } from '../core/types';
+const equipment = (
+  id: string,
+  name: string,
+  category: Category,
+  kind: EquipmentKind,
+  width: number,
+  depth: number,
+  height: number,
+  color: string,
+): EquipmentDefinition => ({
+  id,
+  version: 1,
+  name,
+  category,
+  kind,
+  dimensions: { width, depth, height },
+  color,
+  provenance: 'generic',
+  description:
+    'Equipo genérico editable. Dimensiones orientativas para planificación; no corresponden a especificaciones verificadas de un fabricante.',
+});
+export const catalog: EquipmentDefinition[] = [
+  equipment('drums', 'Batería acústica', 'Instrumentos', 'drums', 2, 1.7, 1.25, '#d89c61'),
+  equipment(
+    'keyboard',
+    'Teclado con soporte',
+    'Instrumentos',
+    'keyboard',
+    1.25,
+    0.45,
+    0.95,
+    '#9ca9b5',
+  ),
+  equipment('guitar', 'Guitarra / bajo', 'Instrumentos', 'guitar', 0.38, 0.22, 1.1, '#c28a61'),
+  equipment('amp', 'Amplificador', 'Instrumentos', 'speaker', 0.6, 0.3, 0.5, '#6d777b'),
+  equipment('microphone', 'Micrófono con pie', 'Audio', 'microphone', 0.5, 0.5, 1.6, '#95a8ab'),
+  equipment('monitor', 'Monitor de piso', 'Audio', 'monitor', 0.55, 0.45, 0.32, '#687880'),
+  equipment('subwoofer', 'Subgrave', 'Audio', 'speaker', 0.65, 0.7, 0.65, '#56666c'),
+  equipment('line-array', 'Line array modular', 'Audio', 'line-array', 0.7, 0.4, 1.8, '#58686c'),
+  equipment('console', 'Consola genérica', 'Audio', 'console', 0.8, 0.6, 0.22, '#768891'),
+  equipment('stagebox', 'Stagebox genérica', 'Audio', 'box', 0.45, 0.2, 0.15, '#6c7b85'),
+  equipment('iem', 'Receptor IEM genérico', 'Audio', 'box', 0.1, 0.03, 0.07, '#95a8ab'),
+  equipment('riser', 'Tarima modular', 'Escenario', 'riser', 2, 2, 0.4, '#8c8f86'),
+  equipment('box', 'Objeto personalizado', 'Escenario', 'box', 1, 1, 1, '#839b91'),
+  equipment('led', 'Pantalla LED modular', 'Video', 'led', 5, 0.1, 2.5, '#4ecdc4'),
+  equipment('person', 'Músico / intérprete', 'Personas', 'person', 0.5, 0.4, 1.75, '#b7ada0'),
+];
